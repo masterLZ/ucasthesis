@@ -106,5 +106,25 @@
 %-
 \newcommand{\adddotsbeforeeqnnum}{\def\maketag@@@##1{\hbox{\m@th\normalfont\dots\ ##1}}}%
 %---------------------------------------------------------------------------%
+\RequirePackage[titles]{tocloft}
+\newlength{\mylen}
+\renewcommand{\cftfigpresnum}{\figurename\enspace}
+\renewcommand{\cftfigaftersnum}{}
+\settowidth{\mylen}{\cftfigpresnum\cftfigaftersnum}
+\addtolength{\cftfignumwidth}{\mylen}
+\renewcommand{\cfttabpresnum}{\tablename\enspace}
+\renewcommand{\cfttabaftersnum}{}
+\settowidth{\mylen}{\cfttabpresnum\cfttabaftersnum}
+\addtolength{\cfttabnumwidth}{\mylen}
+\renewcommand{\cftchapfont}{\zihao{4}\sffamily}
+\renewcommand{\cftsecfont}{\zihao{-4}\sffamily}
+\renewcommand{\cftsubsecfont}{\zihao{-4}\sffamily}
+\renewcommand{\cftsubsubsecfont}{\zihao{-4}\sffamily}
+\renewcommand{\cftfigfont}{\zihao{-4}\sffamily}
+\renewcommand{\cfttabfont}{\zihao{-4}\sffamily}
+\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftdotsep}{1.5}
+
+
 \endinput
 

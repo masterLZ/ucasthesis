@@ -158,6 +158,8 @@
 \newcommand{\ulhshift}{-4em}% horizontal shift on underline
 \newcommand{\ulextend}[2][350pt]{% extend underline length
     \hbox to #1{\hfill\hspace*{\ulhshift}#2\hfill}}
+\newcommand{\ulextendSIOM}[1]{% extend underline length
+     \hbox to 300pt{\hfill#1 \hfill}}
 %---------------------------------------------------------------------------%
 %->> Titlepage
 %---------------------------------------------------------------------------%
@@ -249,6 +251,7 @@
         \def\ucas@value@en@thesistype{\ucas@value@en@thesistype@bac}%
         \def\maketitle{\maketitle@xpdc}
         \def\MAKETITLE{\MAKETITLE@xpdc}
+        
     }{%
     \ucasifstreq{\ucas@value@en@degree}{Master}{%
         \def\ucas@label@ch@thesis{\ucas@label@ch@thesis@mas}%
@@ -267,6 +270,7 @@
         \def\ucas@value@en@thesistype{\ucas@value@en@thesistype@doc}%
         \def\maketitle{\maketitle@xpdc}
         \def\MAKETITLE{\MAKETITLE@xpdc}
+        \def\MaketitleSIOM{\Maketitle@SIOM}
     }{%
     \ucasifstreq{\ucas@value@en@degree}{Postdoctor}{%
         \def\ucas@label@ch@thesis{\ucas@label@ch@thesis@pdc}%
@@ -283,6 +287,71 @@
 %-
 %-> Define Chinese style
 %-
+\usepackage{xeCJK}
+\newCJKfontfamily\kaiGB{楷体_GB2312}[AutoFakeBold]                          
+%%
+\newcommand{\Maketitle@SIOM}{
+    \cleardoublepage
+    \thispagestyle{empty}
+    \begin{center}
+        \linespread{1.6}
+        \zihao{-4}\bfseries
+        \vspace*{24pt}
+
+        {\zihao{-1} \bfseries\kaiGB{{中国科学院上海光学精密机械研究所}}}
+        \vspace*{24pt}
+
+        {\zihao{1}\heiti\bfseries\sffamily {博士学位论文}}
+        \vspace*{36pt}
+
+        {
+            \zihao{3}\bfseries
+            \def\tabcolsep{1pt}
+            \def\arraystretch{2}
+            \begin{tabular}{lc}
+                论文题目 & \ulenhance[1.2pt]{\ulextendSIOM{\heiti\ucas@value@ch@title}}\\
+                % &\\
+                专\qquad 业    & \ulenhance[1.2pt]{\ulextendSIOM{{\zihao{3}\ucas@value@ch@major}}}\\
+                % &\\
+                研究生姓名& \ulenhance[1.2pt]{\ulextendSIOM{\zihao{3}\ucas@value@ch@author}}\\
+                % &\\
+                导师姓名 & \ulenhance[1.2pt]{\ulextendSIOM{\zihao{3}刘德安\quad 研究员}}\\
+                % &\\
+                研究生入学时间 & \ulenhance[1.2pt]{\ulextendSIOM{\zihao{3} 2017年8月}}
+            \end{tabular}
+        }
+        \vspace*{36pt}
+
+        {\zihao{3}\kaiGB{\bfseries {2022年6月1日}}}
+    \end{center}
+    \clearpage
+    \if@twoside
+        \thispagestyle{empty}
+        \ifucas@versioninfo
+            \vspace*{\stretch{1}}
+            \begin{footnotesize}
+                \noindent
+                Draft Version (\today)
+            \end{footnotesize}
+        \fi
+        \cleardoublepage[empty]
+    \else
+        \ifucas@versioninfo
+            \thispagestyle{empty}
+            \vspace*{\stretch{1}}
+            \begin{footnotesize}
+                \noindent
+                Draft Version (\today)
+            \end{footnotesize}
+            \cleardoublepage[empty]
+        \fi
+    \fi
+    \ifucas@print%
+        \hypersetup{% set hyperlinks
+            hidelinks,% remove link color and border
+        }
+    \fi
+}
 \newcommand{\maketitle@xpdc}{%
     \cleardoublepage
     \thispagestyle{empty}
@@ -411,6 +480,7 @@
 %-
 %-> Define English style
 %-
+
 \newcommand{\MAKETITLE@xpdc}{%
     \cleardoublepage
     \thispagestyle{empty}

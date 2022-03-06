@@ -1,0 +1,13 @@
+*.aux
+/*.lof
+*.log
+*.lot
+*.out
+*.gz
+/*.toc
+/Tmp/*.bbl
+/Tmp/*.blg
+/Tmp/*.lof
+/Tmp/*.toc
+/Thesis.pdf
+/Tmp/Thesis.pdf

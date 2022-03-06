@@ -547,7 +547,7 @@
 %-> Figure environment support
 %-
 \RequirePackage{graphicx}% packages for including graphics
-\RequirePackage[format=plain,hangindent=2.0em,font={small,bf},skip=8pt,labelsep=space]{caption}% options: [margin=10pt,labelfont=bf]
+\RequirePackage[format=plain,hangindent=2.0em,font={small,bf},skip=8pt,labelsep=space,justification=centering]{caption}% options: [margin=10pt,labelfont=bf]
 \RequirePackage{subcaption}% package for subfigures
 \RequirePackage[list=off]{bicaption}% package for binary captions
 \DeclareCaptionOption{bi-first}[]{}% 1st language
@@ -636,9 +636,9 @@
         %pagebackref=true,% backreference by page number
         colorlinks=true,% false: boxed links; true: colored links
         linkcolor=black,% color of internal links
-        citecolor=blue,% color of links to bibliography
-        filecolor=blue,% color of file links
-        urlcolor=blue,% color of external links
+        citecolor=black,% color of links to bibliography
+        filecolor=black,% color of file links
+        urlcolor=black,% color of external links
     }
     \ifartx@xlink% set link color to black
         \hypersetup{% set hyperlinks
@@ -693,6 +693,13 @@
 %- Page styles in Latex refers to headers and footers of a document.
 %- These headers/footers typically contain document titles, chapter
 %- or section numbers/names, and page numbers.
+\fancypagestyle{enfrontmatterstyle}{% style for frontmatter
+\fancyhf{}% clear fields
+\fancyhead[C]{\footnotesize \ifnumodd{\value{page}}{\leftmark}{\ucas@value@en@title}}% structure elements
+\fancyfoot[C]{\footnotesize \thepage}% page number
+\renewcommand{\headrulewidth}{0.8pt}% header rule
+\renewcommand{\footrulewidth}{0pt}% footer rule
+}
 %- Configure fancy style
 \ifartx@xhf% user defined header and footer style
     \pagestyle{fancy}%
